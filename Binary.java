@@ -159,27 +159,6 @@ public class Binary {
       
 
     }
-    
-    //Accessor Methods
-    public int getDec(){
-      return _decNum;
-    }
-
-    public String getBin(){
-      return _binNum;
-    }
-    //helper function
-    public boolean equalz (Binary a){
-      int x = a.getDec();
-      return (x == this.getDec());
-
-    }
-    //helper function 2
-    public boolean equalz2 (Binary a){
-      String x = a.getBin();
-      return (x == this.getBin());
-    }
-
 
     /*=============================================
       boolean equals(Object) -- tells whether 2 Objs are equivalent
@@ -188,9 +167,7 @@ public class Binary {
       Object), or if this and other represent equal binary values
       ============================================*/
     public boolean equals( Object other ) { 
-      if (!(other instanceof Binary))
-            return false;
-      return equalz((Binary)other) || equalz2((Binary)other);
+      return (compareTo(other) == 0);
 	       
     }
 
@@ -202,15 +179,14 @@ public class Binary {
       negative integer if this<input, positive integer otherwise
       ============================================*/
     public int compareTo( Object other ) {                
-        int x = ((Binary)other).getDec();
-        if (x == this.getDec()) {
-            return 0;
-        }
-        else if (this.getDec() > x) {
-            return 1;
-        }
-        else 
-            {return -1;}}
+        if(!(other instanceof Binary)) 
+          throw new ClassCastException("Error the input is not Binary");
+        Binary temp = (Binary)other;
+        int a = temp._decNum;
+        int b = this._decNum;
+        if (a == b) {return 0;}
+        if (a < b) {return 1;}
+        else {return -1;}}
 	 
     
 
