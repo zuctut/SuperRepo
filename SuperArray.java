@@ -3,6 +3,8 @@
 //HW45 -- Come Together
 //2015-12-09
 
+//Note: Credits to Sungbin Kim and Sachal Malik for helping me out
+
 
 
  * SKELETON for
