@@ -1,11 +1,11 @@
-//skeleton file for class Binary
 
 //Zuhra Tukhtamisheva
 //APCS1 pd5
-//HW43
-//2015-12-07
+//HW45 -- Come Together
+//2015-12-09
 
-public class Binary {
+
+public class Binary implements Comparable { 
 
     private int _decNum;
     private String _binNum;
@@ -171,6 +171,10 @@ public class Binary {
 	       
     }
 
+    //Accessor methods
+    public int get_decNum() {
+      return _decNum;}
+
 
     /*=============================================
       int compareTo(Object) -- tells which of two Binary objects is greater
@@ -179,15 +183,36 @@ public class Binary {
       negative integer if this<input, positive integer otherwise
       ============================================*/
     public int compareTo( Object other ) {                
-        if(!(other instanceof Binary)) 
-          throw new ClassCastException("Error the input is not Binary");
-        Binary temp = (Binary)other;
-        int a = temp._decNum;
+        if(!(other instanceof Comparable)) {
+          throw new ClassCastException("Error, the input is not Binary");}
+        
+        else if (other == null) {
+          throw new NullPointerException("Error, input is null");}
+        
+        else if ( other instanceof Comparable) {
+        
+        if (other instanceof Binary){
+        int a = ((Binary)other)._decNum;
         int b = this._decNum;
         if (a == b) {return 0;}
-        if (a < b) {return 1;}
-        else {return -1;}}
-	 
+        else if (a < b) {return 1;}
+        else {return -1;}
+        }
+
+        else if (other instanceof Hexadecimal){
+        int a = ((Hexadecimal)other).get_decNum();
+        int b = this._decNum;
+        if (a == b) {return 0;}
+        else if (a < b) {return 1;}
+        else {return -1;}
+        }
+
+        else if (other instanceof Rational){
+        if (this._decNum > ((Rational)other).floatValue() ) {return 1;}
+        else if (this._decNum == ((Rational)other).floatValue() ) {return 0;}
+        else {return -1;}
+        }}
+	     return -1;}
     
 
     
