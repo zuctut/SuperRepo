@@ -1,14 +1,14 @@
 //Zuhra Tukhtamisheva
-//Partner : Kyle Moon
-//HW44 --This or That or Fourteen Other Things
-//2015-12-08
+//APCS1 pd5
+//HW45 -- Come Together
+//2015-12-09
 
 
 
 
-public class Hexadecimal {
+public class Hexadecimal implements Comparable {
 
-	private int _decNum;
+	public int _decNum;
 	private String _hexNum;
 	private static final String _HEXDIGITS = "0123456789ABCDEF";
 
@@ -130,21 +130,51 @@ public static int hexToDec(String s) {
             Object), or if this and other represent equal binary values
       =============================================*/
     public boolean equals( Object other ) { 
-	return this.compareTo(other)==0;
+	return (compareTo(other) == 0);
     }
  
+ //Accessor methods
+    public int get_decNum() {return _decNum;}
+
  /*=============================================
       int compareTo(Object) -- tells which of two Hexadecimal objects is greater
       pre:  other is instance of class Hexadecimal
       post: Returns 0 if this Object is equal to the input Object,
             negative integer if this<input, positive integer otherwise
       =============================================*/
-    public int compareTo( Object other ) {
-	if (!(other instanceof Hexadecimal))
-	    return -1;
-	return this._decNum-(((Hexadecimal)other)._decNum);
+       
+     public int compareTo( Object other ) {                
+        if(!(other instanceof Comparable)) {
+          throw new ClassCastException("Error, the input is not Hexadecimal");}
+        
+        else if (other == null) {
+          throw new NullPointerException("Error, input is null");}
+        
+        else if ( other instanceof Comparable) {
+        
+        if (other instanceof Hexadecimal){
+        int a = ((Hexadecimal)other)._decNum;
+        int b = this._decNum;
+        if (a == b) {return 0;}
+        else if (a < b) {return 1;}
+        else {return -1;}
+        }
 
-	}
+        else if (other instanceof Binary){
+        int a = ((Binary)other).get_decNum();
+        int b = this._decNum;
+        if (a == b) {return 0;}
+        else if (a < b) {return 1;}
+        else {return -1;}
+        }
+
+        else if (other instanceof Rational){
+        if (this._decNum > ((Rational)other).floatValue() ) {return 1;}
+        else if (this._decNum == ((Rational)other).floatValue() ) {return 0;}
+        else {return -1;}
+        }}
+	     return -1;}
+	
 
 	public static void main (String [] args){
 	System.out.println();
